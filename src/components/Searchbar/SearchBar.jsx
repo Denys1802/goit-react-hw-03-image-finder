@@ -5,7 +5,7 @@ import {
   FormBtn,
   FormLabel,
   FormInput,
-} from './Searchbar.styled';
+} from './SearchBar.styled';
 class Searchbar extends Component {
   state = {
     inputValue: '',
@@ -14,6 +14,7 @@ class Searchbar extends Component {
   handleChange = ({ target }) => {
     const value = target.value.toLowerCase().trim();
     this.setState({ inputValue: value });
+    this.props.resetPage();
   };
 
   handleSubmit = e => {

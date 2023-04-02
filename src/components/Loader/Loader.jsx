@@ -1,21 +1,25 @@
-import PropTypes from "prop-types";
-import { Circles } from "react-loader-spinner";
+import PropTypes from 'prop-types';
+import { Circles } from 'react-loader-spinner';
+
+import { WrapLoader } from './Loader.styled';
 
 export const Loader = ({
   heightLoader,
   widthLoader,
-  colorLoader = "#2054c5",
+  colorLoader = '#2054c5',
 }) => {
   return (
-    <Circles
-      height={widthLoader}
-      width={heightLoader}
-      color={colorLoader}
-      ariaLabel="circles-loading"
-      wrapperStyle={{}}
-      wrapperClass=""
-      visible={true}
-    />
+    <WrapLoader>
+      <Circles
+        height={widthLoader}
+        width={heightLoader}
+        color={colorLoader}
+        ariaLabel="circles-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+      />
+    </WrapLoader>
   );
 };
 

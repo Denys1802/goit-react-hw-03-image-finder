@@ -33,11 +33,12 @@ class App extends Component {
 
     if (prevState.page < this.state.page) {
       this.setState({ isLoading: true });
-      fetchImages(searchText, (page += 1))
+      fetchImages(searchText, page)
         .then(({ hits }) => {
           this.setState(prevState => {
             return {
               images: [...prevState.images, ...hits],
+              page,
             };
           });
         })
@@ -58,12 +59,19 @@ class App extends Component {
     });
   };
 
+  resetPage = () => {
+    this.setState({ page: 1 });
+  };
+
   render() {
     const { images, isLoading, totalHits, error, page } = this.state;
     return (
       <>
         <AppWrap>
-          <Searchbar createSearchText={this.createSearchText} />
+          <Searchbar
+            createSearchText={this.createSearchText}
+            resetPage={this.resetPage}
+          />
           {error && <h1>Please try again</h1>}
           {images && <ImageGallery images={this.state.images} />}
           {images && !isLoading && totalHits !== page && (
