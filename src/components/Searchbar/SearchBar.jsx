@@ -1,14 +1,14 @@
-import { Component } from "react";
+import { Component } from 'react';
 import {
   SeaechHeader,
   SearchForm,
   FormBtn,
   FormLabel,
   FormInput,
-} from "./Searchbar.styled";
+} from './Searchbar/SearchBar.styled';
 class Searchbar extends Component {
   state = {
-    inputValue: "",
+    inputValue: '',
   };
 
   handleChange = ({ target }) => {
@@ -16,7 +16,7 @@ class Searchbar extends Component {
     this.setState({ inputValue: value });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     this.props.createSearchText(this.state.inputValue);
   };
