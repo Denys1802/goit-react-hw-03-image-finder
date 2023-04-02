@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
-import { Circles } from 'react-loader-spinner';
+import PropTypes from "prop-types";
+import { Circles } from "react-loader-spinner";
 
 export const Loader = ({
   heightLoader,
   widthLoader,
-  colorLoader = '#2054c5',
+  colorLoader = "#2054c5",
 }) => {
   return (
     <Circles

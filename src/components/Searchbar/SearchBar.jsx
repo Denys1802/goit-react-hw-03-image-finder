@@ -1,52 +1,45 @@
-import PropTypes from 'prop-types';
-import { Component } from 'react';
+import { Component } from "react";
 import {
-  SearchbarWrap,
-  Form,
+  SeaechHeader,
+  SearchForm,
   FormBtn,
   FormLabel,
   FormInput,
-} from './SearchBar.styled';
-
-export class SearchBar extends Component {
+} from "./Searchbar.styled";
+class Searchbar extends Component {
   state = {
-    searchValue: '',
+    inputValue: "",
   };
 
-  heandleChange = e => {
-    this.setState({
-      searchValue: e.target.value,
-    });
+  handleChange = ({ target }) => {
+    const value = target.value.toLowerCase().trim();
+    this.setState({ inputValue: value });
   };
 
-  heandleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    this.props.onSubmit(this.state.searchValue.trim());
-    this.setState({ searchValue: '' });
+    this.props.createSearchText(this.state.inputValue);
   };
-
   render() {
     return (
-      <SearchbarWrap>
-        <Form onSubmit={this.heandleSubmit}>
+      <SeaechHeader>
+        <SearchForm onSubmit={this.handleSubmit}>
           <FormBtn type="submit">
             <FormLabel>Search</FormLabel>
           </FormBtn>
 
           <FormInput
             type="text"
-            autocomplete="off"
+            autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
-            value={this.state.searchValue}
-            onChange={this.heandleChange}
+            onChange={this.handleChange}
+            value={this.state.inputValue}
           />
-        </Form>
-      </SearchbarWrap>
+        </SearchForm>
+      </SeaechHeader>
     );
   }
 }
 
-SearchBar.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
+export default Searchbar;

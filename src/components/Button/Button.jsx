@@ -1,19 +1,12 @@
-import PropTypes from 'prop-types';
-
-import { Loader } from 'components/Loader/Loader';
-import { LoadBtn } from './Button.styled';
-export const Button = ({ clickLoadMore, toggleLoader }) => {
+import { Btn, WrapBtn } from "./Button.styled";
+const LoadMoreBtn = ({ onClick }) => {
   return (
-    <LoadBtn type="button" disabled={toggleLoader} onClick={clickLoadMore}>
-      Load more
-      {toggleLoader && (
-        <Loader widthLoader={'25'} heightLoader={'25'} colorLoader={'#fff'} />
-      )}
-    </LoadBtn>
+    <WrapBtn>
+      <Btn type="button" onClick={onClick}>
+        Load more
+      </Btn>
+    </WrapBtn>
   );
 };
 
-Button.propTypes = {
-  clickLoadMore: PropTypes.func.isRequired,
-  toggleLoader: PropTypes.bool.isRequired,
-};
+export default LoadMoreBtn;
