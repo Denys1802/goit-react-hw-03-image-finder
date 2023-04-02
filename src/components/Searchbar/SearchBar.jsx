@@ -5,7 +5,7 @@ import {
   FormBtn,
   FormLabel,
   FormInput,
-} from './Searchbar/SearchBar.styled';
+} from './Searchbar.styled';
 class Searchbar extends Component {
   state = {
     inputValue: '',
