@@ -16,7 +16,7 @@ class App extends Component {
   };
 
   componentDidUpdate(_, prevState) {
-    const searchText = this.state.searchText.toLowerCase().trim();
+    const searchText = this.state.searchText;
     let page = this.state.page;
     if (prevState.searchText !== searchText && searchText) {
       this.setState({ isLoading: true, page: 1 });

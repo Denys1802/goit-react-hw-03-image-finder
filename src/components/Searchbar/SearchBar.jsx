@@ -12,7 +12,7 @@ class Searchbar extends Component {
   };
 
   handleChange = ({ target }) => {
-    const value = target.value.toLowerCase().trim();
+    const value = target.value;
     this.setState({ inputValue: value });
     this.props.resetPage();
   };
