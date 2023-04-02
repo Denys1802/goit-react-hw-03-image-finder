@@ -1,11 +1,13 @@
-import { Btn, WrapBtn } from "./Button.styled";
-const LoadMoreBtn = ({ onClick }) => {
+import { Loader } from 'components/Loader/Loader';
+import { Btn } from './Button.styled';
+const LoadMoreBtn = ({ onClick, isLoading }) => {
   return (
-    <WrapBtn>
-      <Btn type="button" onClick={onClick}>
-        Load more
-      </Btn>
-    </WrapBtn>
+    <Btn type="button" disabled={isLoading} onClick={onClick}>
+      Load more
+      {isLoading && (
+        <Loader widthLoader={'25'} heightLoader={'25'} colorLoader={'#fff'} />
+      )}
+    </Btn>
   );
 };
 

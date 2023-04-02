@@ -11,6 +11,7 @@ class App extends Component {
     images: null,
     page: 1,
     isLoading: false,
+    isHidden: false,
     totalHits: 0,
     error: false,
   };
@@ -25,6 +26,7 @@ class App extends Component {
           this.setState({
             images: data.hits,
             isLoading: false,
+            isHidden: true,
             totalHits: data.totalHits,
           });
         })
@@ -64,7 +66,7 @@ class App extends Component {
   };
 
   render() {
-    const { images, isLoading, totalHits, error, page } = this.state;
+    const { images, isLoading, isHidden, error, totalHits } = this.state;
     return (
       <>
         <AppWrap>
@@ -74,8 +76,8 @@ class App extends Component {
           />
           {error && <h1>Please try again</h1>}
           {images && <ImageGallery images={this.state.images} />}
-          {images && !isLoading && totalHits !== page && (
-            <LoadMoreBtn onClick={this.incrementPage} />
+          {images && !isLoading && isHidden && totalHits > 12 && (
+            <LoadMoreBtn onClick={this.incrementPage} isLoading={isLoading} />
           )}
           {isLoading && <Loader widthLoader={'200'} heightLoader={'200'} />}
         </AppWrap>
