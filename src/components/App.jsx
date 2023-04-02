@@ -1,13 +1,13 @@
-import { Component } from "react";
-import { AppWrap } from "./App.styled";
-import { fetchImages } from "./services/fetch";
-import { Loader } from "./Loader/Loader";
-import LoadMoreBtn from "./Button/Button";
-import Searchbar from "./Searchbar/Searchbar";
-import ImageGallery from "./ImageGallery/ImageGallery";
+import { Component } from 'react';
+import { AppWrap } from './App.styled';
+import { fetchImages } from './services/fetch';
+import { Loader } from './Loader/Loader';
+import LoadMoreBtn from './Button/Button';
+import Searchbar from './Searchbar/SearchBar';
+import ImageGallery from './ImageGallery/ImageGallery';
 class App extends Component {
   state = {
-    searchText: "",
+    searchText: '',
     images: null,
     page: 1,
     isLoading: false,
@@ -21,39 +21,39 @@ class App extends Component {
     if (prevState.searchText !== searchText && searchText) {
       this.setState({ isLoading: true, page: 1 });
       fetchImages(searchText, page)
-        .then((data) => {
+        .then(data => {
           this.setState({
             images: data.hits,
             isLoading: false,
             totalHits: data.totalHits,
           });
         })
-        .catch((error) => this.setState({ error: true }));
+        .catch(error => this.setState({ error: true }));
     }
 
     if (prevState.page < this.state.page) {
       this.setState({ isLoading: true });
       fetchImages(searchText, (page += 1))
         .then(({ hits }) => {
-          this.setState((prevState) => {
+          this.setState(prevState => {
             return {
               images: [...prevState.images, ...hits],
             };
           });
         })
-        .catch((error) => this.setState({ error: true }))
+        .catch(error => this.setState({ error: true }))
         .finally(() => {
           this.setState({ isLoading: false });
         });
     }
   }
 
-  createSearchText = (searchText) => {
+  createSearchText = searchText => {
     this.setState({ searchText });
   };
 
   incrementPage = () => {
-    this.setState((prevState) => {
+    this.setState(prevState => {
       return { page: prevState.page + 1 };
     });
   };
@@ -69,7 +69,7 @@ class App extends Component {
           {images && !isLoading && totalHits !== page && (
             <LoadMoreBtn onClick={this.incrementPage} />
           )}
-          {isLoading && <Loader widthLoader={"200"} heightLoader={"200"} />}
+          {isLoading && <Loader widthLoader={'200'} heightLoader={'200'} />}
         </AppWrap>
       </>
     );
